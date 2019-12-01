@@ -1,0 +1,110 @@
+<div class="card my-5">
+
+  <div class="card-body">
+    <label for="guestName">Visitor Details: </label>
+
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="guestName">Name: </label>
+        <input type="text" required
+               class="form-control"
+               [(ngModel)]="guestAndHostInfo.guestName"
+               id="guestName"
+               name="guestName"
+               placeholder="Enter Guest name"
+               required #guestName="ngModel">
+<!--        <div   class="alert alert-danger"> Guest Name is required</div>-->
+        <!--        [hidden]="!guestName.pristine"-->
+      </div>
+
+      <div class="form-group">
+        <label for="guestEmail">Email: </label>
+        <input type="text" required
+               [(ngModel)]="guestAndHostInfo.guestEmail"
+               class="form-control"
+               name="guestEmail"
+               id="guestEmail"
+               placeholder="Enter Guest email address">
+        <!--        <div class="alert alert-danger"> Guest Email is required</div>-->
+      </div>
+
+      <div class="form-group">
+        <label for="guestPhone">Phone Number: </label>
+        <input type="text"  required maxlength="10" minlength="10" onlyNumber
+               [(ngModel)]="guestAndHostInfo.guestPhone"
+               class="form-control"
+               name="guestPhone"
+               id="guestPhone"
+               placeholder="Enter Guest Phone Number">
+        <div *ngIf="userForm.submitted " class="invalid-feedback">
+
+          <div class="alert alert-danger"  *ngIf="guestName.errors.required || guestName.errors.minlength || guestName.errors.minlength ||  guestName.errors.onlyNumber" >Guest Phone Number  is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="checkInTime">Check-In Time: </label>
+
+        <input type="datetime-local" required
+               [(ngModel)]="guestAndHostInfo.checkInTime"
+               class="form-control"
+               name="checkInTime"
+               id="checkInTime"
+               placeholder="Enter Guest CheckIn Time">
+
+        <!--        <div  class="alert alert-danger">Guest checkin Time is required</div>-->
+      </div>
+      <div class="form-group">
+        <label for="checkOutTime">Check-Out Time: </label>
+        <span> <input type="datetime-local" required
+                      class="form-control"
+                      [(ngModel)]="guestAndHostInfo.checkOutTime"
+                      class="form-control"
+                      name="checkOutTime"
+                      id="checkOutTime"
+                      placeholder="Enter Guest CheckOut Time">
+       </span>
+
+        <!--        <div  class="alert alert-danger">Guest checkout Time is required</div>-->
+      </div>
+
+      <label style="margin-top:10px;" for="hostName">Host Details: </label>
+      <div class="form-group">
+        <label for="hostName">Name: </label>
+        <input type="text" required
+               [(ngModel)]="guestAndHostInfo.hostName"
+               class="form-control"
+               name="hostName"
+               id="hostName"
+               placeholder="Enter Host Name"
+        >
+        <!--        <div  class="alert alert-danger">Host Name is required</div>-->
+      </div>
+      <div class="form-group">
+        <label for="hostEmail">Email: </label>
+        <input type="text" required
+               [(ngModel)]="guestAndHostInfo.hostEmail"
+               class="form-control"
+               name="hostEmail"
+               id="hostEmail"
+               placeholder="Enter Host Email">
+        <!--        <div class="alert alert-danger">Host Email is required</div>-->
+      </div>
+      <div class="form-group">
+        <label  for="hostPhone">Phone Number: </label>
+        <input type="text" required
+               [(ngModel)]="guestAndHostInfo.hostPhone"
+               class="form-control"
+               name="hostPhone"
+               id="hostPhone"
+               placeholder="Enter Host Phone Number"
+               type="text">
+        <!--        <div class="alert-danger" >Host Phone Number is required</div>-->
+      </div>
+      <button type="submit"
+              class="btn btn-info" routerLink="/welcome"    (click)="onSubmit()">Submit</button>
+      <!--      [disabled]="!userForm.form.valid"-->
+    </form>
+  </div>
+</div>
+
